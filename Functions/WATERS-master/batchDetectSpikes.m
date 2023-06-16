@@ -103,17 +103,17 @@ end
 
 params.numFilesForSpikeDetection = length(files);
 
-thresholds = params.thresholds;
-thrList = strcat( 'thr', thresholds);
-thrList = strrep(thrList, '.', 'p');
+% thresholds = params.thresholds;
+% thrList = strcat( 'thr', thresholds);
+% thrList = strrep(thrList, '.', 'p');
 
 % 2021-06-07: adding absolute thresholds 
-if isfield(params, 'absThresholds')
-    absThresholds = params.absThresholds;
-    absThrList = strcat('absthr', absThresholds);
-    absThrList = strrep(absThrList, '.', 'p')';
-    
-end 
+% if isfield(params, 'absThresholds')
+%     absThresholds = params.absThresholds;
+%     absThrList = strcat('absthr', absThresholds);
+%     absThrList = strrep(absThrList, '.', 'p')';
+% 
+% end 
 
 % TODO: work in progress
 % if isfield(params, 'absThresholds')
@@ -122,7 +122,7 @@ end
 
 % Note that this adds a new dimensions, you should get Nx2 cell array
 % 2021-06-09: TS: but why not just do vertcat???
-wnameList = horzcat(wnameList, thrList);
+%wnameList = horzcat(wnameList, thrList);
 % wnameList = vertcat(wnameList, thrList);
 
 % check if custom threshold file is provided
