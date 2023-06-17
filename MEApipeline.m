@@ -6,17 +6,19 @@
 % no subsequent section requires user input
 % Please refer to the documentation for guidance on parameter choice here:
 % https://analysis-pipeline.readthedocs.io/en/latest/pipeline-steps.html#pipeline-settings
-
+clear all
+close all
+clc
 % Directories
 HomeDir = 'C:\Users\aboschi\Documents\GitHub\MEA-NAP'; % Where the Aanlysis pipeline code is located
-Params.outputDataFolder = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit';   % Where to save the output data, leave as '' if same as HomeDir 
+Params.outputDataFolder = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit\Out';   % Where to save the output data, leave as '' if same as HomeDir 
 rawData = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\20230208\PreMono';  % path to raw data .mat files
 Params.priorAnalysisPath = [''];  % path to prev analysis, leave as [''] if no prior anlaysis
 spikeDetectedData = ''; % path to spike-detected data, leave as '' if no previously detected spike data
 
 % Input and output filetype
 spreadsheet_file_type = 'csv'; % 'csv' or 'excel'
-spreadsheet_filename = '20230208_PreMono.csv'; 
+spreadsheet_filename = '20230208_PreMono_test.csv'; 
 sheet = 1; % specify excel sheet
 xlRange = 'A2:C41'; % specify range on the sheet (e.g., 'A2:C7' would analyse the first 6 files)
 csvRange = [2, Inf]; % read the data in the range [StartRow EndRow], e.g. [2 Inf] means start reading data from row 2
