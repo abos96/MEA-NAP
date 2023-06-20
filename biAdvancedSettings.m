@@ -287,7 +287,7 @@ end
 
 %% Plotting : ordering of groups for statistical summary plots 
 % Params.customGrpOrder = {'WT', 'HE', 'KO'} ; % eg. {'WT', 'HE', 'KO'};  % leave as empty {} if to use default alphabetical order
-Params.customGrpOrder = {} ; 
+Params.customGrpOrder = {'WT'} ; 
 
 %% Plotting : stats summary settings 
 Params.includeNotBoxPlots = 0;

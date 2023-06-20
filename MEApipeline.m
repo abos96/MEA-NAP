@@ -6,45 +6,47 @@
 % no subsequent section requires user input
 % Please refer to the documentation for guidance on parameter choice here:
 % https://analysis-pipeline.readthedocs.io/en/latest/pipeline-steps.html#pipeline-settings
-
+clear all
+close all
+clc
 % Directories
-HomeDir = '[INPUT_REQUIRED]'; % Where the Aanlysis pipeline code is located
-Params.outputDataFolder = '';   % Where to save the output data, leave as '' if same as HomeDir 
-rawData = '[INPUT REQUIRED]';  % path to raw data .mat files
-Params.priorAnalysisPath = [''];  % path to prev analysis, leave as [''] if no prior anlaysis
-spikeDetectedData = ''; % path to spike-detected data, leave as '' if no previously detected spike data
+HomeDir = 'C:\Users\aboschi\Documents\GitHub\MEA-NAP'; % Where the Aanlysis pipeline code is located
+Params.outputDataFolder = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit\PreMono\19062023';   % Where to save the output data, leave as '' if same as HomeDir 
+rawData = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\20230208\PreMono';  % path to raw data .mat files
+Params.priorAnalysisPath = ['E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit\PreMono\OutputData17Jun2023'];  % path to prev analysis, leave as [''] if no prior anlaysis
+spikeDetectedData = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit\PreMono\OutputData17Jun2023\1_SpikeDetection\1A_SpikeDetectedData'; % path to spike-detected data, leave as '' if no previously detected spike data
 
 % Input and output filetype
 spreadsheet_file_type = 'csv'; % 'csv' or 'excel'
-spreadsheet_filename = '[INPUT_REQUIRED].csv'; 
+spreadsheet_filename = '20230208_PreMono.csv'; 
 sheet = 1; % specify excel sheet
-xlRange = 'A2:C7'; % specify range on the sheet (e.g., 'A2:C7' would analyse the first 6 files)
+xlRange = 'A2:C41'; % specify range on the sheet (e.g., 'A2:C7' would analyse the first 6 files)
 csvRange = [2, Inf]; % read the data in the range [StartRow EndRow], e.g. [2 Inf] means start reading data from row 2
 Params.output_spreadsheet_file_type = 'csv';  % .xlsx or .csv
 
 % Analysis step settings
-Params.priorAnalysisDate = ''; % prior analysis date in format given in output data folder e.g., '27Sep2021'
-Params.priorAnalysis = 0; % use previously analysed data? 1 = yes, 0 = no
-Params.startAnalysisStep = 1; % if Params.priorAnalysis=0, default is to start with spike detection
+Params.priorAnalysisDate = '17Jun2023'; % prior analysis date in format given in output data folder e.g., '27Sep2021'
+Params.priorAnalysis = 1; % use previously analysed data? 1 = yes, 0 = no
+Params.startAnalysisStep = 4; % if Params.priorAnalysis=0, default is to start with spike detection
 Params.optionalStepsToRun = {''}; % include 'generateCSV' to generate csv for rawData folder
                                   % include 'runStats' to look at feature
                                   % correlation and classification across groups
                                   % include 'combineDIVplots' to combine plots across DIVs
-
+Params.optionalStepsToRun = {'combineDIVplots'};
 % Spike detection settings
 detectSpikes = 0; % run spike detection? % 1 = yes, 0 = no
 Params.runSpikeCheckOnPrevSpikeData = 0; % whether to run spike detection check without spike detection 
-Params.fs = 25000; % Sampling frequency, HPC: 25000, Axion: 12500;
-Params.dSampF = 25000; % down sampling factor for spike detection check
-Params.potentialDifferenceUnit = 'uV';  % the unit which you are recording electrical signals 
-Params.channelLayout = 'MCS60';  % 'MCS60' or 'Axion64' or 'MCS60old'
-Params.thresholds = {'4', '5'}; % standard deviation multiplier threshold(s), eg. {'2.5', '3.5', '4.5'}
-Params.wnameList = {'bior1.5', 'bior1.3', 'db2'}; % wavelet methods to use {'bior1.5', 'mea'}; 
-Params.costList = -0.12;
+Params.fs = 12500; % Sampling frequency, HPC: 25000, Axion: 12500;
+Params.dSampF = 12500; % down sampling factor for spike detection check
+Params.potentialDifferenceUnit = 'V';  % the unit which you are recording electrical signals 
+Params.channelLayout = 'Axion64';  % 'MCS60' or 'Axion64' or 'MCS60old'
+Params.thresholds = {''}; % standard deviation multiplier threshold(s), eg. {'2.5', '3.5', '4.5'}
+Params.wnameList = {'bior1.5'}; % wavelet methods to use {'bior1.5', 'mea'}; 
+Params.costList = -0.1;
 Params.SpikesMethod = 'bior1p5';  % wavelet methods, eg. 'bior1p5', or 'mergedAll', or 'mergedWavelet'
 
 % Functional connectivity inference settings
-Params.FuncConLagval = [10, 25, 50]; % set the different lag values (in ms), default to [10, 15, 25]
+Params.FuncConLagval = [25]; % set the different lag values (in ms), default to [10, 15, 25]
 Params.TruncRec = 0; % truncate recording? 1 = yes, 0 = no
 Params.TruncLength = 120; % length of truncated recordings (in seconds)
 Params.adjMtype = 'weighted'; % 'weighted' or 'binary'
