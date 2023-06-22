@@ -15,6 +15,7 @@ Params.outputDataFolder = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\Analysi
 rawData = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\20230208\PreMono';  % path to raw data .mat files
 Params.priorAnalysisPath = ['E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit\PreMono\OutputData17Jun2023'];  % path to prev analysis, leave as [''] if no prior anlaysis
 spikeDetectedData = 'E:\Alessio DO NOT DELETE\Sand Boston\Data\MAT\AnalysisGit\PreMono\OutputData17Jun2023\1_SpikeDetection\1A_SpikeDetectedData'; % path to spike-detected data, leave as '' if no previously detected spike data
+Params.SpreedsheetFolder = 'C:\Users\aboschi\Documents\GitHub\SpreadSheetFolder';
 
 % Input and output filetype
 spreadsheet_file_type = 'csv'; % 'csv' or 'excel'

@@ -7,7 +7,13 @@ if strcmp(spreadsheet_file_type, 'excel')
     ExpGrp = txt(:,3); % name of experimental group
     ExpDIV = num(:,1); % DIV number
 elseif strcmp(spreadsheet_file_type, 'csv')
-    opts = detectImportOptions(spreadsheet_filename);
+    if Params.SpreedsheetFolder
+        cd(Params.SpreedsheetFolder)
+        opts = detectImportOptions(spreadsheet_filename);
+        cd(HomeDir)
+    else
+        opts = detectImportOptions(spreadsheet_filename);
+    end
     opts.Delimiter = ',';
     opts.VariableNamesLine = 1;
     opts.VariableTypes{1} = 'char';  % this should be the recoding file name
@@ -18,7 +24,14 @@ elseif strcmp(spreadsheet_file_type, 'csv')
     end 
     opts.DataLines = csvRange; % read the data in the range [StartRow EndRow]
     % csv_data = readtable(spreadsheet_filename, 'Delimiter','comma');
-    csv_data = readtable(spreadsheet_filename, opts);
+
+    if Params.SpreedsheetFolder
+        cd(Params.SpreedsheetFolder)
+        csv_data = readtable(spreadsheet_filename, opts);
+        cd(HomeDir)
+    else
+        csv_data = readtable(spreadsheet_filename, opts);
+    end
     ExpName =  csv_data{:, 1};
     ExpGrp = csv_data{:, 3};
     ExpDIV = csv_data{:, 2};
