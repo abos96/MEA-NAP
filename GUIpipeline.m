@@ -158,14 +158,14 @@ if Params.priorAnalysis==0 || Params.priorAnalysis==1 && Params.startAnalysisSte
         disp(char(Info.FN))
 
         if Params.priorAnalysis==1 && Params.startAnalysisStep==2
-            spikeDetectedDataFolder = spikeDetectedData;
+            spikeDetectedDataFolder = Params.spikeDetectedData;
         else
             if Params.detectSpikes == 1
                 spikeDetectedDataFolder = fullfile(Params.outputDataFolder, ...
                     strcat('OutputData', Params.Date), '1_SpikeDetection', ...
                     '1A_SpikeDetectedData');
             else
-                spikeDetectedDataFolder = spikeDetectedData;
+                spikeDetectedDataFolder = Params.spikeDetectedData;
             end
         end
 
@@ -232,8 +232,8 @@ if Params.priorAnalysis==0 || Params.priorAnalysis==1 && Params.startAnalysisSte
     end
 
     % create combined plots across groups/ages
-    PlotEphysStats(ExpName,Params,HomeDir, oneFigureHandle)
-    saveEphysStats(ExpName, Params, HomeDir)
+    PlotEphysStats(Params.ExpName,Params,HomeDir, oneFigureHandle)
+    saveEphysStats(Params.ExpName, Params, HomeDir)
     cd(HomeDir)
 
 end
@@ -312,12 +312,12 @@ if Params.priorAnalysis==0 || Params.priorAnalysis==1 && Params.startAnalysisSte
         end 
         
         if Params.priorAnalysis == 1
-            if isempty(spikeDetectedData)
+            if isempty(Params.spikeDetectedData)
                 spikeDetectedDataFolder = fullfile(Params.outputDataFolder, ...
                     strcat('OutputData', Params.Date), '1_SpikeDetection', ...
                     '1A_SpikeDetectedData');
             else 
-                spikeDetectedDataFolder = spikeDetectedData;
+                spikeDetectedDataFolder = Params.spikeDetectedData;
             end 
         else
             spikeDetectedDataFolder = fullfile(Params.outputDataFolder, ...
