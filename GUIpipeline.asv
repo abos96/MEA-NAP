@@ -284,7 +284,7 @@ if Params.priorAnalysis==0 || Params.priorAnalysis==1 && Params.startAnalysisSte
     % Set up one figure handle to save all the figures
     oneFigureHandle = NaN;
     oneFigureHandle = checkOneFigureHandle(Params, oneFigureHandle);
-    ExpName = Params.ExpName;
+    Params.
     for  ExN = 1:length(ExpName) 
 
         if Params.priorAnalysis==1 && Params.startAnalysisStep==4
