@@ -22,12 +22,16 @@ cd(OutputDataFolder)
 
 %% does an output folder already exist for that date?
 
-if exist(strcat('OutputData',Date),'dir')
+if isfolder(strcat('OutputData',Date))
     % if so, choose a suffix to rename previous analysis folder
     NewFNsuffix = inputdlg({'An output data folder already exists for the date today, enter a suffix for the old folder to differentiate (i.e. v1)'});
     NewFN = strcat('OutputData',Date,char(NewFNsuffix));
     % rename the old folder
-    movefile(strcat('OutputData',Date),NewFN)
+    if isfolder(strcat('OutputData',Date)) 
+         movefile(strcat('OutputData',Date),NewFN)
+    else 
+        error('origin or destination folder does not exist')
+    end
 end
 
 %% now we can create the output folders

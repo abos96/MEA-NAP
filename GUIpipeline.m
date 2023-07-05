@@ -14,7 +14,7 @@ HomeDir = 'C:\Users\aboschi\Documents\GitHub\MEA-NAP'; % Where the Aanlysis pipe
 
 load("AnalysisSettings.mat")
 
-% Plot settings
+% Plot settingsvalue
 Params.figExt = {'.png', '.svg'};  % supported options are '.fig', '.png', and '.svg'
 Params.fullSVG = 1;  % whether to insist svg even with plots with large number of elements
 Params.showOneFig = 1;  % otherwise, 0 = pipeline shows plots as it runs, 1: supress plots
