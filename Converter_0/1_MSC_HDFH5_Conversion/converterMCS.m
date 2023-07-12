@@ -1,6 +1,6 @@
 %% Convert hdf5 files to mat files
 
-function converterMSC(start_folder,out_folder,metadatafilename,fill_geno,fill_div,genotype,fs,varargin)
+function converterMCS(start_folder,out_folder,metadatafilename,fill_geno,fill_div,genotype,fs,varargin)
 
 cd(start_folder);
 
@@ -52,15 +52,15 @@ for k = 1:length(cycle)
         
         label = exp.Recording{1}.AnalogStream{1}.Info.Label(:);
        
-        converted_data = exp.Recording{1}.AnalogStream{1}.getConvertedData(cfg);
+        dat = exp.Recording{1}.AnalogStream{1}.getConvertedData(cfg);
         %% Save data in the proper format
         cd(out_folder)
-        converted_data = (converted_data.*10.^(exponent-(exponent+6)))';
+        dat = (dat.*10.^(exponent-(exponent+6)))';
         channels = str2double(label)';
         fs = 10000 ;
         savename = split(d(cycle(k)+2).name,'.');
         savename = savename{1};
-        save(savename, "converted_data", "channels", "fs")
+        save(savename, "dat", "channels", "fs")
 
        
         delete (waitbarHandle);
@@ -69,7 +69,7 @@ end
 
 fillBatchFile (out_folder,metadatafilename,fill_div,fill_geno,genotype,out_folder) 
 %%
-warndlg('MSC Convertion Completed','Warning');
+warndlg('MCS Convertion Completed','Warning');
         
         
         

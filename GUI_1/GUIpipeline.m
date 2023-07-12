@@ -10,7 +10,7 @@ clear all
 close all
 clc
 % Directories
-HomeDir = 'C:\Users\aboschi\Documents\GitHub\MEA-NAP'; % Where the Aanlysis pipeline code is located
+HomeDir = 'C:\Users\aboschi\OneDrive - Fondazione Istituto Italiano Tecnologia\Documents\GitHub\MEA-NAP'; % Where the Aanlysis pipeline code is located
 
 load("AnalysisSettings.mat")
 
